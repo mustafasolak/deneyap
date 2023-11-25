@@ -1,0 +1,64 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="serial_init" id="O=x:HrAI]kb(xg+4w6Xe" x="20" y="-20">
+    <field name="PINBAUDIOS">115200</field>
+    <next>
+      <block type="deneyap_serial_print" id="-GqFHsbkXygY#hnCc1:j">
+        <field name="pullup">FALSE</field>
+        <value name="CONTENT">
+          <shadow type="text" id="LDYvGEH1F=`Eg[Ap#f,l">
+            <field name="TEXT">Sıcaklık :</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="deneyap_serial_print" id="9ZX=$.)rTSo,26wj0,(p">
+            <field name="pullup">TRUE</field>
+            <value name="CONTENT">
+              <shadow type="text" id="$BBgpgDeQ.(S@H(KwZR,">
+                <field name="TEXT">veri</field>
+              </shadow>
+              <block type="deneyap_dht" id="W17h]pJ83C+e!cDMiTZ#">
+                <field name="Pin">D0</field>
+                <field name="output">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="deneyap_serial_print" id="T:wERdPy2(X{()IT4jwO">
+                <field name="pullup">FALSE</field>
+                <value name="CONTENT">
+                  <shadow type="text" id="tIOP,t^/h0qNXs*/z%Z*">
+                    <field name="TEXT">Nem :</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="deneyap_serial_print" id="s}0^TB|JR_P?Hn!k[,|+">
+                    <field name="pullup">TRUE</field>
+                    <value name="CONTENT">
+                      <shadow type="text" id="$BBgpgDeQ.(S@H(KwZR,">
+                        <field name="TEXT">veri</field>
+                      </shadow>
+                      <block type="deneyap_dht" id="sX?X(H^jQ|ghb^^Dni`H">
+                        <field name="Pin">D0</field>
+                        <field name="output">1</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="base_delay" id="ocMgWG%*1]-Rt[xLGh96">
+                        <field name="unite">m</field>
+                        <value name="DELAY_TIME">
+                          <shadow type="math_number" id=",}KZ0+VH(`;f#?xeO1kc">
+                            <field name="NUM">1000</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
