@@ -1,0 +1,60 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="base_setup_loop" id="?-cJb:.;*z*:(H14UXXF" x="101" y="82">
+    <statement name="DO">
+      <block type="serial_init" id="fCERw*wv*1;BPdY~?)9!">
+        <field name="PINBAUDIOS">115200</field>
+      </block>
+    </statement>
+    <statement name="LOOP">
+      <block type="controls_if" id="H1CR1c3w%Kp69}l#KWdp">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="oGwb9H;@Wdz~)|FtE1)R">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="deneyap_digital_read" id="uFY}+.ZsK-:h_kX8NGnW">
+                <field name="PIN">D0</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number" id="wOP;v~_W#3qJR9[zv)QN">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="deneyap_serial_print" id="Xi$XDEEoL1kg4vyxhP*r">
+            <field name="pullup">TRUE</field>
+            <value name="CONTENT">
+              <shadow type="text" id="d8E9yDTC*o/6]Pg2X1K6">
+                <field name="TEXT">Hareket algılandı</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="base_delay" id="x[b8@hR:c(r+n,Lhk~3[">
+                <field name="unite">m</field>
+                <value name="DELAY_TIME">
+                  <shadow type="math_number" id="D`tw?zN@?kGu-jkz)BU-">
+                    <field name="NUM">10</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="deneyap_serial_print" id="/@Qj$v~/)xsbT}Vm3=+S">
+            <field name="pullup">TRUE</field>
+            <value name="CONTENT">
+              <shadow type="text" id="KY#K~u-a*Pd1-w^d5];y">
+                <field name="TEXT">------------------------------</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
