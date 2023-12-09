@@ -54,7 +54,7 @@ int sag_in2 = 7;
 
 
 // int motorların hız değeri
-int hiz = 100;
+int hiz = 200;
 
 void setup() {
   // Seri port iletişimi için
@@ -162,12 +162,12 @@ void loop() {
         delay(2000);
       } else if (kodlar[x] == saga_don_komutu_kodu) {
         sag();
-        delay(500);
+        delay(2000);
         ileri();
         delay(2000);
       } else if (kodlar[x] == sola_don_komutu_kodu) {
         sol();
-        delay(500);
+        delay(2000);
         ileri();
         delay(2000);
       }
@@ -220,22 +220,22 @@ void geri() {
   digitalWrite(sag_in2, HIGH);
   analogWrite(sag_enable, hiz);
 }
-void sol() {
+void sag() {
   digitalWrite(sol_in3, HIGH);
   digitalWrite(sol_in4, LOW);
-  analogWrite(sol_enable, hiz);
+  analogWrite(sol_enable, 150);
   digitalWrite(sag_in1, HIGH);
   digitalWrite(sag_in2, LOW);
   analogWrite(sag_enable, 0);
 }
 
-void sag() {
+void sol() {
   digitalWrite(sol_in3, HIGH);
   digitalWrite(sol_in4, LOW);
   analogWrite(sol_enable, 0);
   digitalWrite(sag_in1, HIGH);
   digitalWrite(sag_in2, LOW);
-  analogWrite(sag_enable, hiz);
+  analogWrite(sag_enable, 150);
 }
 void dur() {
   digitalWrite(sol_in3, LOW);
