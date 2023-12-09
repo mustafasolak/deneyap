@@ -1,0 +1,171 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="serial_init" id="l^M/yX!upU08(dBE).w/" x="180" y="68">
+    <field name="PINBAUDIOS">115200</field>
+    <next>
+      <block type="variables_set_init" id="DZ5TXK3#@k1GpvD8MVI%">
+        <field name="VAR">kart1_id</field>
+        <field name="VARIABLE_SETTYPE_TYPE">TEXT</field>
+        <value name="VALUE">
+          <block type="text" id=")x^-0f[R|,kO[g(zD^tx">
+            <field name="TEXT"> 56 250c f8</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set_init" id="v@IL!gMq5?2R|7_74={B">
+            <field name="VAR">kart2_id</field>
+            <field name="VARIABLE_SETTYPE_TYPE">TEXT</field>
+            <value name="VALUE">
+              <block type="text" id="XNi0#@~(Sc!`K_jLR!;8">
+                <field name="TEXT">09 59 90 2b</field>
+              </block>
+            </value>
+            <next>
+              <block type="deneyap_RFID_init" id="~cirn{8}-8y997qJg}nB">
+                <field name="PIN_SDA">D12</field>
+                <field name="PIN_RST">D1</field>
+                <next>
+                  <block type="variables_set_init2" id="T0}AM*V2^n!~6jz{A?kJ">
+                    <field name="VAR">kartno</field>
+                    <field name="VARIABLE_SETTYPE_TYPE2">TEXT</field>
+                    <next>
+                      <block type="controls_if" id="fPTVBHdDxtYD]o4J3@g*">
+                        <value name="IF0">
+                          <block type="deneyap_RFID_detected" id="IH}+:_l!*i_t949BP^1Q"></block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="variables_set" id="X%@c[o!hkU/X2Av-G]e5">
+                            <field name="VAR">kartno</field>
+                            <value name="VALUE">
+                              <block type="deneyap_RFID_readed" id="iK(G1-v,y4?#8cPBi90l"></block>
+                            </value>
+                            <next>
+                              <block type="deneyap_serial_print" id="~g3Z=%{_~/RKQi[);8U{">
+                                <field name="pullup">TRUE</field>
+                                <value name="CONTENT">
+                                  <shadow type="text" id="yKHBN6sK:1(iwf[vU:fj">
+                                    <field name="TEXT">veri</field>
+                                  </shadow>
+                                  <block type="variables_get" id="8}nFfhlRiH%P62VF[1/O">
+                                    <field name="VAR">kartno</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="controls_if" id="~lC?9@)u)FaC5@sZ=@^v">
+                                    <mutation elseif="1" else="1"></mutation>
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="BtKnA60]8;HsTGTv$;3~">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="$6bEOM+so#ag70G7bwL1">
+                                            <field name="VAR">kartno</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow type="math_number" id="jSuW784~g|MXAnJHv3=.">
+                                            <field name="NUM">10</field>
+                                          </shadow>
+                                          <block type="variables_get" id="_ypz~:e+:t4!5}:gEfdc">
+                                            <field name="VAR">kart1_id</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="deneyap_serial_print" id="2kEpL0kTW!:B.n!c9DdF">
+                                        <field name="pullup">TRUE</field>
+                                        <value name="CONTENT">
+                                          <shadow type="text" id="YPm`tN_xIwzh_DK#lJ.h">
+                                            <field name="TEXT">1 numaralı kart</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="deneyap_digital_write" id="cNV2S5VWHW_;pt|;o/v7">
+                                            <field name="PIN">D15</field>
+                                            <field name="STAT">HIGH</field>
+                                            <next>
+                                              <block type="base_delay" id="U1w/F}r)^!-He8Cy:O6d">
+                                                <field name="unite">m</field>
+                                                <value name="DELAY_TIME">
+                                                  <shadow type="math_number" id="RAV${;HAoJ*+_4R%4TH9">
+                                                    <field name="NUM">1000</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <value name="IF1">
+                                      <block type="logic_compare" id="*`ORamGV{c9j.j.-E9a_">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="W4Wyp]-lRR./;h4v4BpH">
+                                            <field name="VAR">kartno</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow type="math_number" id="jSuW784~g|MXAnJHv3=.">
+                                            <field name="NUM">10</field>
+                                          </shadow>
+                                          <block type="variables_get" id=";`tGLossXlWp/$XVP`@Z">
+                                            <field name="VAR">kart2_id</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO1">
+                                      <block type="deneyap_serial_print" id="ze,d|l`q`wZM7?|~EE.t">
+                                        <field name="pullup">TRUE</field>
+                                        <value name="CONTENT">
+                                          <shadow type="text" id="l[4:^nTQ^5#wb8tA*u/h">
+                                            <field name="TEXT">2 numaralı kart</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="deneyap_digital_write" id="G(o$#mnlI?JP:WTsf^`P">
+                                            <field name="PIN">D14</field>
+                                            <field name="STAT">HIGH</field>
+                                            <next>
+                                              <block type="base_delay" id="12Tzm7yG++9YN,Jbxan]">
+                                                <field name="unite">m</field>
+                                                <value name="DELAY_TIME">
+                                                  <shadow type="math_number" id="4%6)~oqt{7?z/Ri[Twlu">
+                                                    <field name="NUM">1000</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <statement name="ELSE">
+                                      <block type="deneyap_serial_print" id="Ndd|2~*{+~O6(8aR7|rF">
+                                        <field name="pullup">TRUE</field>
+                                        <value name="CONTENT">
+                                          <shadow type="text" id=";7vP^kowIJMOS}rW{Ae-">
+                                            <field name="TEXT">Tanınmayan kart</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
