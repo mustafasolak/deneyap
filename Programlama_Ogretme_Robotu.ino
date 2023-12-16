@@ -4,6 +4,7 @@
 #define SS_PIN 10
 #define RST_PIN 9
 
+int buzzer = 2;
 
 MFRC522 rfid(SS_PIN, RST_PIN);  // Instance of the class
 
@@ -69,11 +70,14 @@ void setup() {
   pinMode(sag_in1, OUTPUT);
   pinMode(sag_in2, OUTPUT);
 
+  pinMode(buzzer, OUTPUT);
+
   Serial.println("Program başladı...");
 }
 
 
 void loop() {
+
 
 
   // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
@@ -111,13 +115,16 @@ void loop() {
   sagaKartimi = kartlariKarsilastir(okunanKartId, sagKarti, 4);
   baslatKartimi = kartlariKarsilastir(okunanKartId, baslatKarti, 4);
 
+
+
   if (ileriKartimi) {
     Serial.println("  => İleri kartı okutuldu.");
     // Serial.println(ileri_komutu_kodu);
     kodlar[kod_sayac] = ileri_komutu_kodu;
     kod_sayac++;
     // ileri();
-    delay(1000);
+    // delay(1000);
+    kart_okundu_sesi_cal();
     // dur();
   } else if (geriKartimi) {
     Serial.println("  => Geri kartı okutuldu.");
@@ -125,7 +132,8 @@ void loop() {
     kodlar[kod_sayac] = geri_komutu_kodu;
     kod_sayac++;
     // geri();
-    delay(1000);
+    // delay(1000);
+    kart_okundu_sesi_cal();
     // dur();
   } else if (sagaKartimi) {
     Serial.println("  => Sağa dön kartı okutuldu.");
@@ -133,7 +141,8 @@ void loop() {
     kodlar[kod_sayac] = saga_don_komutu_kodu;
     kod_sayac++;
     // sag();
-    delay(1000);
+    // delay(1000);
+    kart_okundu_sesi_cal();
     // dur();
   } else if (solaKartimi) {
     Serial.println("  => Sola dön kartı okutuldu.");
@@ -141,11 +150,14 @@ void loop() {
     kodlar[kod_sayac] = sola_don_komutu_kodu;
     kod_sayac++;
     // sol();
-    delay(1000);
+    // delay(1000);
+    kart_okundu_sesi_cal();
     // dur();
   } else if (baslatKartimi) {
     Serial.println("\n  >>>>>>>>> Programı başlat kartı okutuldu. <<<<<<<<<< \n");
-    delay(1000);
+
+    programi_baslat_sesi_cal();
+
     Serial.println("----------------------------");
     Serial.println("--- Kaydedilen  Komutlar ---");
     Serial.println("----------------------------");
@@ -191,7 +203,31 @@ void loop() {
   }
 }
 
-void kart_okundu_ledi_yak() {
+
+void kart_okundu_sesi_cal() {
+  digitalWrite(buzzer, HIGH);
+  delay(250);
+  digitalWrite(buzzer, LOW);
+  delay(250);
+}
+
+void programi_baslat_sesi_cal() {
+  digitalWrite(buzzer, HIGH);
+  delay(150);
+  digitalWrite(buzzer, LOW);
+  delay(150);
+  digitalWrite(buzzer, HIGH);
+  delay(150);
+  digitalWrite(buzzer, LOW);
+  delay(150);
+  digitalWrite(buzzer, HIGH);
+  delay(100);
+  digitalWrite(buzzer, LOW);
+  delay(100);
+  digitalWrite(buzzer, HIGH);
+  delay(100);
+  digitalWrite(buzzer, LOW);
+  delay(100);
 }
 
 bool kartlariKarsilastir(byte a[], byte b[], int n) {
